@@ -112,10 +112,10 @@
 ```
 объединенный граф визуализируется с помощью Graphviz.
 ```c   
- system("dot C:\\Users\\duhin\\source\\repos\\graphU\\dot_file.txt -Tbmp -o graph.bmp");
-    system("rundll32  \"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen C:\\Users\\duhin\\source\\repos\\graphU\\graph.bmp");
+ system("dot C:\\Users\\duhin\\source\\repos\\graphU\\dot_file.txt -Tbmp -o graph.PNG");
+    system("rundll32  \"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen C:\\Users\\duhin\\source\\repos\\graphU\\graph.PNG");
 ``` 
 Информация о двух вводимых графах и об объединенном графе в **graph_file.txt**.
 ![Screenshot](work.PNG)
 Пример визуализация объединения двух графов.
-![Screenshot](graph.bpm)
+![Screenshot](graph.PNG)

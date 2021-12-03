@@ -1,9 +1,9 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-int main()
+int main(void)
 {
     int n = 0, n1 = 0, n2 = 0;
     int i, j;
@@ -29,11 +29,11 @@ int main()
         buffer = getchar();
         if (*(x_graph_1 + n1) == -33686019 || *(x_graph_1 + n1) == -842150451)
         {
-            *(x_graph_1 + n1) = 0;
+            *(x_graph_1 + n1) = -1;
         }
         if (*(y_graph_1 + n1) == -33686019 || *(y_graph_1 + n1) == -842150451)
         {
-            *(y_graph_1 + n1) = 0;
+            *(y_graph_1 + n1) = -1;
         }
         fprintf(graph_file, "%d--%d;\n", *(x_graph_1 + n1), *(y_graph_1 + n1));
         n1++;
@@ -48,11 +48,11 @@ int main()
         buffer = getchar();
         if (*(x_graph_2 + n2) == -33686019 || *(x_graph_2 + n2) == -842150451)
         {
-            *(x_graph_2 + n2) = 0;
+            *(x_graph_2 + n2) = -1;
         }
         if (*(y_graph_2 + n2) == -33686019 || *(y_graph_2 + n2) == -842150451)
         {
-            *(y_graph_2 + n2) = 0;
+            *(y_graph_2 + n2) = -1;
         }
         fprintf(graph_file, "%d--%d;\n", *(x_graph_2 + n2), *(y_graph_2 + n2));
         n2++;
@@ -67,9 +67,9 @@ int main()
     fprintf(graph_file, "union graph:\n");
     for (i = 0; i < n1; i = i++)
     {
-        if (*(x_graph_1 + i) != 0)
+        if (*(x_graph_1 + i) != -1)
         {
-            if (*(y_graph_1 + i) != 0)
+            if (*(y_graph_1 + i) != -1)
             {
                fprintf(dot_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + i));
                fprintf(graph_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + i));
@@ -84,16 +84,16 @@ int main()
         {
             if (((*(x_graph_1 + i) == *(x_graph_2 + j)) && (*(y_graph_1 + i) == *(y_graph_2 + j))) || ((*(x_graph_1 + i) == *(y_graph_2 + j)) && (*(y_graph_1 + i) == *(x_graph_2 + j))))
             {
-                *(x_graph_2 + j) = 0;
-                *(y_graph_2 + j) = 0;
+                *(x_graph_2 + j) = -1;
+                *(y_graph_2 + j) = -1;
                 if (crossing_flag)
                 {
-                    if (*(x_graph_1 + i) != 0)
+                    if (*(x_graph_1 + i) != -1)
                     {
-                        if (*(y_graph_1 + i) != 0)
+                        if (*(y_graph_1 + i) != -1)
                         {
-                            fprintf(dot_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + j + 1));
-                            fprintf(graph_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + j + 1));
+                            fprintf(dot_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + j));
+                            fprintf(graph_file, "%d -- %d;\n", *(x_graph_1 + i), *(y_graph_1 + j));
                         }
                         else
                         {
@@ -109,9 +109,9 @@ int main()
     }
     for (j = 0; j < n2; j++)
     {
-        if (*(x_graph_2 + j) != 0)
+        if (*(x_graph_2 + j) != -1)
         {
-            if (*(y_graph_2 + j) != 0)
+            if (*(y_graph_2 + j) != -1)
             {
                 fprintf(dot_file, "%d -- %d;\n", *(x_graph_2 + j), *(y_graph_2 + j));
                 fprintf(graph_file, "%d -- %d;\n", *(x_graph_2 + j), *(y_graph_2 + j));
@@ -126,6 +126,6 @@ int main()
     fprintf(dot_file, "}");
     fclose(dot_file);
     fclose(graph_file);
-    system("dot C:\\Users\\duhin\\source\\repos\\graphU\\dot_file.txt -Tbmp -o graph.bmp");
-    system("rundll32  \"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen C:\\Users\\duhin\\source\\repos\\graphU\\graph.bmp");
+    system("dot C:\\Users\\duhin\\source\\repos\\graphU\\dot_file.txt -Tbmp -o graph.PNG");
+    system("rundll32  \"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen C:\\Users\\duhin\\source\\repos\\graphU\\graph.PNG");
 }

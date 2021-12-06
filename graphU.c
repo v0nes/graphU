@@ -25,17 +25,21 @@ int main(void)
     {   
         x_graph_1 = (int*)realloc(x_graph_1, ((n1 + 1) * sizeof(int)));
         y_graph_1 = (int*)realloc(y_graph_1, ((n1 + 1) * sizeof(int)));
+        memset((x_graph_1 + n1), -1, 4);
+        memset((y_graph_1 + n1), -1, 4);
         scanf("%d%d", (x_graph_1 + n1), (y_graph_1 + n1 ));
         buffer = getchar();
-        if (*(x_graph_1 + n1) == -33686019 || *(x_graph_1 + n1) == -842150451)
+        if (*(x_graph_1 + n1) != -1)
         {
-            *(x_graph_1 + n1) = -1;
+            if (*(y_graph_1 + n1) != -1)
+            {
+                fprintf(graph_file, "%d -- %d;\n", *(x_graph_1 + n1), *(y_graph_1 + n1));
+            }
+            else
+            {
+                fprintf(graph_file, "%d;\n", *(x_graph_1 + n1));
+            }
         }
-        if (*(y_graph_1 + n1) == -33686019 || *(y_graph_1 + n1) == -842150451)
-        {
-            *(y_graph_1 + n1) = -1;
-        }
-        fprintf(graph_file, "%d--%d;\n", *(x_graph_1 + n1), *(y_graph_1 + n1));
         n1++;
     }
     buffer = ' ';
@@ -44,17 +48,21 @@ int main(void)
     {
         x_graph_2 = (int*)realloc(x_graph_2, ((n2 + 1) * sizeof(int)));
         y_graph_2 = (int*)realloc(y_graph_2, ((n2 + 1) * sizeof(int)));
+        memset((x_graph_2 + n2), -1, 4);
+        memset((y_graph_2 + n2), -1, 4);
         scanf("%d%d", (x_graph_2 + n2), (y_graph_2 + n2));
         buffer = getchar();
-        if (*(x_graph_2 + n2) == -33686019 || *(x_graph_2 + n2) == -842150451)
+        if (*(x_graph_2 + n2) != -1)
         {
-            *(x_graph_2 + n2) = -1;
+            if (*(y_graph_2 + n2) != -1)
+            {
+                fprintf(graph_file, "%d -- %d;\n", *(x_graph_2 + n2), *(y_graph_2 + n2));
+            }
+            else
+            {
+                fprintf(graph_file, "%d;\n", *(x_graph_2 + n2));
+            }
         }
-        if (*(y_graph_2 + n2) == -33686019 || *(y_graph_2 + n2) == -842150451)
-        {
-            *(y_graph_2 + n2) = -1;
-        }
-        fprintf(graph_file, "%d--%d;\n", *(x_graph_2 + n2), *(y_graph_2 + n2));
         n2++;
     }
     FILE* dot_file;
@@ -129,3 +137,4 @@ int main(void)
     system("dot C:\\Users\\duhin\\source\\repos\\graphU\\dot_file.txt -Tbmp -o graph.PNG");
     system("rundll32  \"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen C:\\Users\\duhin\\source\\repos\\graphU\\graph.PNG");
 }
+

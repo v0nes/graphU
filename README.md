@@ -9,7 +9,7 @@
 Программа считывает из консоли связанные вершины первого графа в динамические массивы **x_graph_1** и **y_graph_1**, а так же в файл **graph_file.txt**. Для обозначения несвязаннной вершины достаточно после ввода первой вершины ввести любой символ или '0''
 
 ```c   
-    FILE* graph_file;
+FILE* graph_file;
     if ((graph_file = fopen("graph_file.txt", "w")) == NULL)
     {
         printf("Cannot open file.\n");
@@ -20,20 +20,25 @@
     {   
         x_graph_1 = (int*)realloc(x_graph_1, ((n1 + 1) * sizeof(int)));
         y_graph_1 = (int*)realloc(y_graph_1, ((n1 + 1) * sizeof(int)));
+        memset((x_graph_1 + n1), -1, 4);
+        memset((y_graph_1 + n1), -1, 4);
         scanf("%d%d", (x_graph_1 + n1), (y_graph_1 + n1 ));
         buffer = getchar();
-        if (*(x_graph_1 + n1) == -33686019 || *(x_graph_1 + n1) == -842150451)
+        if (*(x_graph_1 + n1) != -1)
         {
-            *(x_graph_1 + n1) = 0;
+            if (*(y_graph_1 + n1) != -1)
+            {
+                fprintf(graph_file, "%d -- %d;\n", *(x_graph_1 + n1), *(y_graph_1 + n1));
+            }
+            else
+            {
+                fprintf(graph_file, "%d;\n", *(x_graph_1 + n1));
+            }
         }
-        if (*(y_graph_1 + n1) == -33686019 || *(y_graph_1 + n1) == -842150451)
-        {
-            *(y_graph_1 + n1) = 0;
-        }
-        fprintf(graph_file, "%d--%d;\n", *(x_graph_1 + n1), *(y_graph_1 + n1));
         n1++;
-    }    
-
+    }
+    buffer = ' ';
+    
 ```
 Для перехода к записи следующего графа нужно нажать **'>'**.
 Он записывается так же, как и первый.
